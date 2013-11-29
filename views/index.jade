@@ -1,8 +1,7 @@
 extends layout
 
-block header 
+block page 
   - var menu = 'index'
-  include includes/menu
 block content
   if (articles.length === 0)
     | There's no content yet. 
@@ -11,4 +10,5 @@ block content
   else 
     each article, index in articles
       div
-        a(href="/articles/#{article.slug}")= article.title
+        h2 
+          a(href="/articles/#{article.slug}")= article.title

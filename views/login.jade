@@ -1,11 +1,15 @@
 extends layout
-block header
+block page
   - var menu = 'login'
-  include includes/menu
 block content
-  div= error
-  div
-    form(action="/login", method="POST")
-      input(name="email", placeholder="hi@azat.co")
-      input(name="password", placeholder="***")
-      button(type="submit") Log in
+  .col-md-4.col-md-offset-4
+    h2 Log in
+    div= error
+    div
+      form(action="/login", method="POST")
+        p
+          input.form-control(name="email", type="text", placeholder="hi@azat.co")
+        p
+          input.form-control(name="password", type="password", placeholder="***")
+        p
+          button.btn.btn-lg.btn-primary.btn-block(type="submit") Log in

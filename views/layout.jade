@@ -2,22 +2,29 @@ doctype 5
 html
   head
     title= appTitle
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/bootstrap-3.0.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-3.0.2/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    script(type="text/javascript", src="/css/bootstrap-3.0.2/js/bootstrap.min.js") 
+    script(type="text/javascript", src="/js/blog.js") 
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
   body
-    .container
-      .navbar.navbar-default
-        .container
-          .navbar-header
-            a.navbar-brand(href='/')= appname
-      .alert.alert-dismissable
-      h1= appTitle
-      p Welcome to Express.js Blog app by&nbsp;
-        a(href='http://twitter.com/azat_co') @azat_co
-        |. Please enjoy.
-    block header
-      div
-        include includes/menu
-    block content
+    #wrap
+      .container
+        h1.page-header= appTitle
+        p.lead Welcome to the Express.js Blog app by&nbsp;
+          a(href='http://twitter.com/azat_co') @azat_co
+          |. Please enjoy.
+        block page
+        block header
+          div
+            include includes/menu
+        .content
+          block content
     block footer
-      div.
-        Copyright &copy; 2014
+      footer
+        .container
+          p
+            | Copyright &copy; 2014 | Issues? Submit to 
+            a(href="https://github.com/azat-co/blog-express/issues") GitHub
+            | .
