@@ -1,0 +1,14 @@
+extends layout
+
+block header 
+  - var menu = 'index'
+  include includes/menu
+block content
+  if (articles.length === 0)
+    | There's no content yet. 
+    a(href="/login") Log in
+    |  to create your first post.
+  else 
+    each article, index in articles
+      div
+        a(href="/articles/#{article.slug}")= article.title

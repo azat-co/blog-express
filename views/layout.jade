@@ -1,0 +1,23 @@
+doctype 5
+html
+  head
+    title= appTitle
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .container
+      .navbar.navbar-default
+        .container
+          .navbar-header
+            a.navbar-brand(href='/')= appname
+      .alert.alert-dismissable
+      h1= appTitle
+      p Welcome to Express.js Blog app by&nbsp;
+        a(href='http://twitter.com/azat_co') @azat_co
+        |. Please enjoy.
+    block header
+      div
+        include includes/menu
+    block content
+    block footer
+      div.
+        Copyright &copy; 2014

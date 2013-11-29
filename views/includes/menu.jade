@@ -1,0 +1,9 @@
+.menu
+  h2 Menu
+  ul.nav.nav-pills
+    li(class=(menu === 'index')?'active':'')
+      a(href='/') Home
+    li(class=(menu === 'login')?'active':'')
+      a(href='/login') Log in
+    li
+      a(href="/logout") Log out

@@ -1,0 +1,11 @@
+extends layout
+block header
+  - var menu = 'login'
+  include includes/menu
+block content
+  div= error
+  div
+    form(action="/login", method="POST")
+      input(name="email", placeholder="hi@azat.co")
+      input(name="password", placeholder="***")
+      button(type="submit") Log in
