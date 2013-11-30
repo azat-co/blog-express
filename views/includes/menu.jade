@@ -4,8 +4,10 @@
       a(href='/') Home
 
     if (admin) 
+      li(class=(menu === 'post')?'active':'') 
+        a(href="/post") Post
       li(class=(menu === 'admin')?'active':'') 
-        a(href="/admin") Admin
+        a(href="/admin") Admin        
       li
         a(href="/logout") Log out
     else 

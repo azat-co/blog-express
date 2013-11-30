@@ -47,7 +47,15 @@ app.use(function(req, res, next) {
   if (req.session && req.session.admin)
     res.locals.admin = true;
   next();
-})
+});
+
+//authorization
+var authorize = function(req, res, next) {
+  if (req.session && req.session.admin) 
+    return next();
+  else 
+    return res.send(401);
+};
 
 // development only
 if ('development' == app.get('env')) {
@@ -61,14 +69,16 @@ app.get('/', routes.index);
 app.get('/login', routes.user.login);
 app.post('/login', routes.user.authenticate);
 app.get('/logout', routes.user.logout);
-app.get('/admin', routes.user.admin);
+app.get('/admin', authorize, routes.user.admin);
+app.get('/post', authorize, routes.article.post);
+app.post('/post', authorize, routes.article.postArticle);
 app.get('/articles/:slug', routes.article.show);
 
 //REST API ROUTES
-app.get('/articles', routes.article.list)
-app.post('/articles', routes.article.add);
-app.put('/articles/:id', routes.article.edit);
-app.del('/articles/:id', routes.article.del);
+app.get('/api/articles', authorize, routes.article.list)
+app.post('/api/articles', authorize, routes.article.add);
+app.put('/api/articles/:id', authorize, routes.article.edit);
+app.del('/api/articles/:id', authorize, routes.article.del);
 
 
 
