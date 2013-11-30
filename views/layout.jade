@@ -13,13 +13,15 @@ html
     #wrap
       .container
         h1.page-header= appTitle
-        p.lead Welcome to the Express.js Blog app by&nbsp;
+        p.lead Welcome to example from Express.js Experience by&nbsp;
           a(href='http://twitter.com/azat_co') @azat_co
           |. Please enjoy.
         block page
         block header
           div
             include includes/menu
+        block alert
+          div.alert.alert-warning.hidden
         .content
           block content
     block footer

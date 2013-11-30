@@ -99,3 +99,15 @@ exports.postArticle = function(req, res, next) {
 };
 
 
+
+/*
+ * GET admin page.
+ */
+
+exports.admin = function(req, res, next) {
+  req.collections.articles.find({}).toArray(function(error, articles) {
+    if (error) return next(error);
+    res.render('admin',{articles:articles});
+  });  
+  
+}

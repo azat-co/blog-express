@@ -41,12 +41,3 @@ exports.authenticate = function(req, res, next) {
     res.redirect('/admin');
   })
 };
-
-/*
- * GET admin page.
- */
-
-exports.admin = function(req, res, next) {
-  if (!req.session.admin) return res.send(401);
-  res.render('admin');
-}
