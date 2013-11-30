@@ -94,8 +94,7 @@ exports.postArticle = function(req, res, next) {
   req.collections.articles.insert(article, function(error, articleResponse) {
     if (error) return next(error);
     res.render('post', {error: "Artical was added. Publish it on Admin page."});
-  });
-  
+  });  
 };
 
 
@@ -105,7 +104,7 @@ exports.postArticle = function(req, res, next) {
  */
 
 exports.admin = function(req, res, next) {
-  req.collections.articles.find({}).toArray(function(error, articles) {
+  req.collections.articles.find({},{sort: {_id:-1}}).toArray(function(error, articles) {
     if (error) return next(error);
     res.render('admin',{articles:articles});
   });  

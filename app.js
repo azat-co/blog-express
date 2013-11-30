@@ -75,14 +75,15 @@ app.post('/post', authorize, routes.article.postArticle);
 app.get('/articles/:slug', routes.article.show);
 
 //REST API ROUTES
-app.get('/api/articles', authorize, routes.article.list)
-app.post('/api/articles', authorize, routes.article.add);
-app.put('/api/articles/:id', authorize, routes.article.edit);
-app.del('/api/articles/:id', authorize, routes.article.del);
+app.all('/api', authorize);
+app.get('/api/articles', routes.article.list)
+app.post('/api/articles', routes.article.add);
+app.put('/api/articles/:id', routes.article.edit);
+app.del('/api/articles/:id', routes.article.del);
 
 
 
-app.all('*',function(req, res) {
+app.all('*', function(req, res) {
   res.send(404);
 })
 
