@@ -8,6 +8,7 @@ describe('server', function () {
   before(function () {
     boot();
   });
+  
   describe('homepage', function(){
     it('should respond to GET',function(done){
       superagent
@@ -18,6 +19,7 @@ describe('server', function () {
       })
     })    
   });
+  
   after(function () {
     shutdown();
   });
