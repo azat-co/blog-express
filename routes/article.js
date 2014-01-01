@@ -10,7 +10,6 @@ exports.show = function(req, res, next) {
     if (!article.published && !req.session.admin) return res.send(401);
     res.render('article', article);
   });
-  
 };
 
 
@@ -83,7 +82,7 @@ exports.post = function(req, res, next) {
 
 exports.postArticle = function(req, res, next) {
   if (!req.body.title || !req.body.slug || !req.body.text ) {
-    return res.render('post', {error: "Fill title, slug and text."});  
+    return res.render('post', {error: "Fill title, slug and text."});
   }
   var article = {
     title: req.body.title,
@@ -94,7 +93,7 @@ exports.postArticle = function(req, res, next) {
   req.collections.articles.insert(article, function(error, articleResponse) {
     if (error) return next(error);
     res.render('post', {error: "Artical was added. Publish it on Admin page."});
-  });  
+  });
 };
 
 
@@ -107,6 +106,6 @@ exports.admin = function(req, res, next) {
   req.collections.articles.find({},{sort: {_id:-1}}).toArray(function(error, articles) {
     if (error) return next(error);
     res.render('admin',{articles:articles});
-  });  
-  
+  });
+
 }
