@@ -1,10 +1,12 @@
 REPORTER = list
 MOCHA_OPTS = --ui bdd -c
 
+db:
+	echo Seeding blog-test *****************************************************
+	./db/seed.sh
 test:
 	clear
-	echo Seeding blog-test *****************************************************
-	./db/seed-test.sh
+
 	echo Starting test *********************************************************
 	./node_modules/mocha/bin/mocha \
 	--reporter $(REPORTER) \
@@ -12,4 +14,4 @@ test:
 	tests/*.js
 	echo Ending test
 
-.PHONY: test
+.PHONY: test db
