@@ -1,3 +1,6 @@
+var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY
+var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET
+
 var express = require('express'),
   routes = require('./routes'),
   http = require('http'),
@@ -8,7 +11,31 @@ var express = require('express'),
   collections = {
     articles: db.collection('articles'),
     users: db.collection('users')
-  };
+  }
+  everyauth = require('everyauth');
+
+everyauth.debug = true;
+everyauth.twitter
+  .consumerKey(TWITTER_CONSUMER_KEY)
+  .consumerSecret(TWITTER_CONSUMER_SECRET)
+  .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
+    var promise = this.Promise();
+    process.nextTick(function(){
+        if (twitterUserMetadata.screen_name === 'azat_co') {
+          session.user = twitterUserMetadata;
+          session.admin = true;
+        }
+        promise.fulfill(twitterUserMetadata);
+    })
+    return promise;
+    // return twitterUserMetadata
+  })
+  .redirectPath('/admin');
+
+
+everyauth.everymodule.findUserById( function (user, callback) {
+  callback(user)
+});
 
 
 var app = express();
@@ -30,7 +57,8 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.cookieParser('3CCC4ACD-6ED1-4844-9217-82131BDCB239'));
-app.use(express.cookieSession({secret: '2C44774A-D649-4D44-9535-46E296EF984F'}))
+app.use(express.session({secret: '2C44774A-D649-4D44-9535-46E296EF984F'}))
+app.use(everyauth.middleware());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(require('stylus').middleware(__dirname + '/public'));

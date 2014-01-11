@@ -13,6 +13,7 @@
     "stylus": "~0.40.3",
     "mocha": "~1.16.2",
     "superagent": "~0.15.7",
-    "expect.js": "~0.2.0"
+    "expect.js": "~0.2.0",
+    "everyauth": "~0.4.5"
   }
 }
