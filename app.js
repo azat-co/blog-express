@@ -1,21 +1,14 @@
-
-/**
- * Module dependencies.
- */
-
-var express = require('express');
-var routes = require('./routes');
-
-var http = require('http');
-var path = require('path');
-
-var mongoskin = require('mongoskin');
-var dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog';
-var db = mongoskin.db(dbUrl, {safe: true});
-var collections = {
-  articles: db.collection('articles'),
-  users: db.collection('users')
-};
+var express = require('express'),
+  routes = require('./routes'),
+  http = require('http'),
+  path = require('path'),
+  mongoskin = require('mongoskin'),
+  dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog',
+  db = mongoskin.db(dbUrl, {safe: true}),
+  collections = {
+    articles: db.collection('articles'),
+    users: db.collection('users')
+  };
 
 
 var app = express();
@@ -51,9 +44,9 @@ app.use(function(req, res, next) {
 
 //authorization
 var authorize = function(req, res, next) {
-  if (req.session && req.session.admin) 
+  if (req.session && req.session.admin)
     return next();
-  else 
+  else
     return res.send(401);
 };
 
