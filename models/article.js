@@ -18,4 +18,9 @@ var articleSchema = new mongoose.Schema({
   }
 });
 
+articleSchema.static({
+  list: function(callback){
+    this.find({}, null, {sort: {_id:-1}}, callback);
+  }
+})
 module.exports = mongoose.model('Article', articleSchema);

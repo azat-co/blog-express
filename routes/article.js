@@ -18,9 +18,9 @@ exports.show = function(req, res, next) {
  */
 
 exports.list = function(req, res, next) {
-  req.models.Article.find({}).toArray(function(error, articles) {
+  req.models.Article.list(function(error, articles) {
     if (error) return next(error);
-    res.send({articles:articles});
+    res.send({articles: articles});
   });
 };
 
@@ -118,7 +118,7 @@ exports.postArticle = function(req, res, next) {
  */
 
 exports.admin = function(req, res, next) {
-  req.models.Article.find({},null,{sort: {_id:-1}}, function(error, articles) {
+  req.models.Article.list(function(error, articles) {
     if (error) return next(error);
     res.render('admin',{articles:articles});
   });
