@@ -14,6 +14,7 @@
     "mocha": "~1.16.2",
     "superagent": "~0.15.7",
     "expect.js": "~0.2.0",
-    "everyauth": "~0.4.5"
+    "everyauth": "~0.4.5",
+    "mongoose": "~3.8.4"
   }
 }
