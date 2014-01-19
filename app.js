@@ -1,5 +1,5 @@
-var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY
-var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET
+var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY || 'ABC'
+var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET || 'XYZXYZ'
 
 var express = require('express'),
   routes = require('./routes'),
