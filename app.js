@@ -32,7 +32,11 @@ everyauth.twitter
   })
   .redirectPath('/admin');
 
+everyauth.everymodule.handleLogout( function (req, res) {
+  req.session = null; // or req.session.destroy()
 
+  this.redirect(res, this.logoutRedirectPath());
+});
 everyauth.everymodule.findUserById( function (user, callback) {
   callback(user)
 });
@@ -89,6 +93,7 @@ app.use(app.router);
 app.get('/', routes.index);
 app.get('/login', routes.user.login);
 app.post('/login', routes.user.authenticate);
+//if you use everyauth, this /logout route is overwrite by everyauth automatically, therefore we use custom/additional handleLogout
 app.get('/logout', routes.user.logout);
 app.get('/admin', authorize, routes.article.admin);
 app.get('/post', authorize, routes.article.post);
